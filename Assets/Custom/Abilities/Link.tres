@@ -1,0 +1,44 @@
+[gd_resource type="Resource" load_steps=8 format=2]
+
+[ext_resource path="res://src/Abilities/AbilityData.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Graphics/GemAtlases/G2.tres" type="Texture" id=2]
+[ext_resource path="res://Assets/Audio/Board/AbilityReady.wav" type="AudioStream" id=3]
+[ext_resource path="res://Assets/Audio/Abilities/LinkActivate.wav" type="AudioStream" id=4]
+[ext_resource path="res://Assets/Audio/Abilities/LinkSelect.wav" type="AudioStream" id=5]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends AbilityActions
+
+
+func get_highlight_color(gem, selected_gem) -> Color:
+	return Board.unhighlighted_color if gem != selected_gem else Color.white
+
+
+func activate(board, gem):
+	if gem == null:
+		return false
+
+	if gem.color == 5:
+		return false
+	
+	gem.set_color(5)
+	gem.emit_particles()
+	return true
+"
+
+[sub_resource type="AudioStreamRandomPitch" id=2]
+audio_stream = ExtResource( 3 )
+random_pitch = 1.2
+
+[resource]
+script = ExtResource( 1 )
+name = "RAINBOW PEBBLE"
+description = "Create a wild gem which connects to anything."
+icon = ExtResource( 2 )
+color = Color( 0, 1, 0.298039, 1 )
+max_charges = 8
+charge_needed = 15
+actions = SubResource( 1 )
+sfx_ready = SubResource( 2 )
+sfx_select = ExtResource( 5 )
+sfx_activate = ExtResource( 4 )

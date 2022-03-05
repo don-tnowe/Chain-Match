@@ -1,0 +1,43 @@
+[gd_resource type="Resource" load_steps=8 format=2]
+
+[ext_resource path="res://src/Abilities/AbilityData.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Graphics/GemAtlases/G0.tres" type="Texture" id=2]
+[ext_resource path="res://Assets/Audio/Abilities/FireSelect.wav" type="AudioStream" id=3]
+[ext_resource path="res://Assets/Audio/Board/AbilityReady.wav" type="AudioStream" id=4]
+[ext_resource path="res://Assets/Audio/Abilities/FireActivate.wav" type="AudioStream" id=5]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends AbilityActions
+
+
+func get_highlight_color(gem, selected_gem) -> Color:
+	return Board.unhighlighted_color if gem.position.y != selected_gem.position.y else Color.white
+
+
+func activate(board, gem):
+	var arr = []
+	
+	for x in board.board_contents:
+		if x.y == gem.position.y:
+			arr.append(board.board_contents[x])
+	
+	board.collect_chain(arr)
+	return true
+"
+
+[sub_resource type="AudioStreamRandomPitch" id=2]
+audio_stream = ExtResource( 4 )
+random_pitch = 1.2
+
+[resource]
+script = ExtResource( 1 )
+name = "FIYAH STRIEK"
+description = "Burn a row of your choice."
+icon = ExtResource( 2 )
+color = Color( 1, 0.258824, 0, 1 )
+max_charges = 4
+charge_needed = 15
+actions = SubResource( 1 )
+sfx_ready = SubResource( 2 )
+sfx_select = ExtResource( 3 )
+sfx_activate = ExtResource( 5 )

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/FireSelect.wav-c47c03c922d6f83da20298605e4d3e52.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Abilities/FireSelect.wav"
+dest_files=[ "res://.import/FireSelect.wav-c47c03c922d6f83da20298605e4d3e52.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

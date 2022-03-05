@@ -1,0 +1,55 @@
+[gd_resource type="Resource" load_steps=8 format=2]
+
+[ext_resource path="res://src/Abilities/AbilityData.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Graphics/GemAtlases/G1.tres" type="Texture" id=2]
+[ext_resource path="res://Assets/Audio/Abilities/HammerActivate.wav" type="AudioStream" id=3]
+[ext_resource path="res://Assets/Audio/Abilities/HammerSelect.wav" type="AudioStream" id=4]
+[ext_resource path="res://Assets/Audio/Board/AbilityReady.wav" type="AudioStream" id=5]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends AbilityActions
+
+
+var selection = []
+
+
+func get_highlight_color(gem, selected_gem) -> Color:
+	return Color.white if (gem == selected_gem || gem in selection) else Board.unhighlighted_color
+
+
+func activate(board, gem):
+	if !gem in selection:
+		selection.append(gem)
+
+	else:
+		selection.erase(gem)
+
+	if selection.size() < 2:
+		return false
+
+	else:
+		board.collect_chain(selection, true, 15)
+		selection = []
+		return true
+
+	
+func cancel():
+	selection = []
+"
+
+[sub_resource type="AudioStreamRandomPitch" id=2]
+audio_stream = ExtResource( 5 )
+random_pitch = 1.2
+
+[resource]
+script = ExtResource( 1 )
+name = "PAWA HAMMAH"
+description = "Break two gems for a bit of score."
+icon = ExtResource( 2 )
+color = Color( 1, 0.74902, 0, 1 )
+max_charges = 8
+charge_needed = 15
+actions = SubResource( 1 )
+sfx_ready = SubResource( 2 )
+sfx_select = ExtResource( 4 )
+sfx_activate = ExtResource( 3 )

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/RecolorActivate.wav-b61af7f75778d69ddcb59bc4b475d3fb.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Abilities/RecolorActivate.wav"
+dest_files=[ "res://.import/RecolorActivate.wav-b61af7f75778d69ddcb59bc4b475d3fb.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

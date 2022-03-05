@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/HammerActivate.wav-6e5b15ccdd0b693b40f82bf8e512b33f.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Abilities/HammerActivate.wav"
+dest_files=[ "res://.import/HammerActivate.wav-6e5b15ccdd0b693b40f82bf8e512b33f.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

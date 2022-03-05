@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/FireActivate.wav-aabd25e223e51d70f97041cc22a5d246.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Abilities/FireActivate.wav"
+dest_files=[ "res://.import/FireActivate.wav-aabd25e223e51d70f97041cc22a5d246.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

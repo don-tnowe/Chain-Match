@@ -1,0 +1,192 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://src/Abilities/Ability.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Graphics/SolidWhite.tres" type="Texture" id=2]
+[ext_resource path="res://Assets/Graphics/GemAtlases/G0.tres" type="Texture" id=3]
+[ext_resource path="res://Assets/DefaultTheme.tres" type="Theme" id=4]
+
+[sub_resource type="InputEventKey" id=1]
+resource_local_to_scene = true
+scancode = 49
+
+[sub_resource type="ShortCut" id=2]
+resource_local_to_scene = true
+shortcut = SubResource( 1 )
+
+[node name="Ability" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme = ExtResource( 4 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="."]
+self_modulate = Color( 1, 0.258824, 0, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_default_cursor_shape = 2
+theme = ExtResource( 4 )
+action_mode = 0
+shortcut = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_clip_content = true
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="Control"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -104.0
+margin_right = -104.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Flash" type="Sprite" parent="Control/Control"]
+rotation = 0.523599
+scale = Vector2( 1e-05, 1280 )
+texture = ExtResource( 2 )
+
+[node name="Icon" type="TextureRect" parent="."]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -160.0
+margin_top = -32.0
+margin_right = -96.0
+margin_bottom = 32.0
+rect_pivot_offset = Vector2( 32, 32 )
+mouse_filter = 2
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Labels" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -160.0
+rect_clip_content = true
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Labels"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 24.0
+margin_top = -56.0
+margin_right = 156.0
+margin_bottom = -8.0
+rect_scale = Vector2( 2, 2 )
+text = "FIYAH STRIEK"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="Labels"]
+self_modulate = Color( 0.792157, 0.792157, 0.792157, 1 )
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 24.0
+margin_top = -8.0
+margin_right = 238.0
+margin_bottom = 40.0
+text = "Destroy a row of your choice."
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Bar" type="Control" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -88.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Fill" type="TextureProgress" parent="Bar"]
+self_modulate = Color( 1, 0.258824, 0, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -8.0
+rect_scale = Vector2( 1.00755, 1 )
+mouse_filter = 2
+max_value = 60.0
+step = 0.01
+value = 32.74
+allow_greater = true
+texture_under = ExtResource( 2 )
+texture_progress = ExtResource( 2 )
+fill_mode = 3
+tint_under = Color( 0.145098, 0.145098, 0.145098, 1 )
+nine_patch_stretch = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Bar"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -48.0
+margin_top = -56.0
+margin_bottom = -8.0
+rect_scale = Vector2( 2, 2 )
+text = "600"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Count" type="Label" parent="Bar"]
+visible = false
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -104.0
+margin_top = -48.0
+margin_right = -51.0
+margin_bottom = -24.0
+rect_scale = Vector2( 2, 2 )
+text = "x0"
+align = 2
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SoundCharged" type="AudioStreamPlayer" parent="."]
+
+[node name="SoundSelect" type="AudioStreamPlayer" parent="."]
+
+[node name="SoundActivate" type="AudioStreamPlayer" parent="."]
+
+[node name="Tween" type="Tween" parent="."]
+
+[connection signal="pressed" from="Button" to="." method="select"]

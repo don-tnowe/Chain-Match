@@ -1,0 +1,94 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Control",
+"class": "Ability",
+"language": "GDScript",
+"path": "res://src/Abilities/Ability.gd"
+}, {
+"base": "Reference",
+"class": "AbilityActions",
+"language": "GDScript",
+"path": "res://src/Abilities/AbilityActions.gd"
+}, {
+"base": "Resource",
+"class": "AbilityData",
+"language": "GDScript",
+"path": "res://src/Abilities/AbilityData.gd"
+}, {
+"base": "Control",
+"class": "Board",
+"language": "GDScript",
+"path": "res://src/Main/Board.gd"
+}, {
+"base": "Resource",
+"class": "FailCondition",
+"language": "GDScript",
+"path": "res://src/Level/FailCondition.gd"
+}, {
+"base": "Area2D",
+"class": "Gem",
+"language": "GDScript",
+"path": "res://src/BoardGems/Gem.gd"
+}, {
+"base": "Reference",
+"class": "GemData",
+"language": "GDScript",
+"path": "res://src/BoardGems/GemData.gd"
+}, {
+"base": "Resource",
+"class": "Level",
+"language": "GDScript",
+"path": "res://src/Level/Level.gd"
+}, {
+"base": "Node",
+"class": "ObjectiveManager",
+"language": "GDScript",
+"path": "res://src/Main/ObjectiveManager.gd"
+} ]
+_global_script_class_icons={
+"Ability": "",
+"AbilityActions": "",
+"AbilityData": "",
+"Board": "",
+"FailCondition": "",
+"Gem": "",
+"GemData": "",
+"Level": "",
+"ObjectiveManager": ""
+}
+
+[application]
+
+config/name="Chain Match"
+run/main_scene="res://src/Menu/Levelselect.tscn"
+config/icon="res://icon.png"
+
+[autoload]
+
+Meta="*res://src/Meta.gd"
+
+[display]
+
+window/size/width=1280
+window/size/height=720
+window/size/test_width=853
+window/size/test_height=479
+window/stretch/mode="2d"
+window/stretch/aspect="keep_height"
+
+[physics]
+
+common/enable_pause_aware_picking=true
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"

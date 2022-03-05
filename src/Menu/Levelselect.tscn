@@ -1,0 +1,476 @@
+[gd_scene load_steps=24 format=2]
+
+[ext_resource path="res://src/Menu/Levelselect.gd" type="Script" id=1]
+[ext_resource path="res://Assets/DefaultTheme.tres" type="Theme" id=2]
+[ext_resource path="res://Assets/Custom/Levels/Objectives/Turns1.tres" type="Resource" id=3]
+[ext_resource path="res://Assets/Custom/Levels/Objectives/Timed3.tres" type="Resource" id=4]
+[ext_resource path="res://Assets/Custom/Levels/Objectives/Turns2.tres" type="Resource" id=5]
+[ext_resource path="res://Assets/Custom/Levels/Objectives/Timed1.tres" type="Resource" id=6]
+[ext_resource path="res://Assets/Custom/Levels/Objectives/Timed2.tres" type="Resource" id=7]
+[ext_resource path="res://Assets/Custom/Levels/Objectives/Turns3.tres" type="Resource" id=8]
+[ext_resource path="res://Assets/Custom/Levels/Objectives/Timed3Ab.tres" type="Resource" id=9]
+[ext_resource path="res://Assets/Custom/Levels/Objectives/Turns3Ab.tres" type="Resource" id=10]
+[ext_resource path="res://Assets/Custom/Levels/Boards/Basic.tres" type="Texture" id=11]
+[ext_resource path="res://Assets/Custom/Levels/Boards/Eye.tres" type="Texture" id=12]
+[ext_resource path="res://Assets/Custom/Levels/Boards/Checker.tres" type="Texture" id=13]
+[ext_resource path="res://Assets/Custom/Levels/Boards/Long.tres" type="Texture" id=14]
+[ext_resource path="res://Assets/Custom/Levels/Boards/BigCrystal.tres" type="Texture" id=15]
+[ext_resource path="res://Assets/Custom/Levels/Boards/Roads.tres" type="Texture" id=16]
+[ext_resource path="res://Assets/Custom/Levels/Boards/DiamondLarge.tres" type="Texture" id=17]
+[ext_resource path="res://Assets/Custom/Levels/Objectives/Zen.tres" type="Resource" id=18]
+[ext_resource path="res://Assets/Custom/Levels/Objectives/ZenAb.tres" type="Resource" id=19]
+[ext_resource path="res://src/Menu/RandomTitle.gd" type="Script" id=20]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0, 0.12987, 0.818182, 1 )
+colors = PoolColorArray( 0.19397, 0.202034, 0.22168, 1, 0.00468318, 0.005039, 0.00590588, 1, 0.0983467, 0.105819, 0.124023, 1, 0.420898, 0.402717, 0.358421, 1 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+width = 32
+
+[sub_resource type="ButtonGroup" id=3]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BG" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -1001.0
+margin_top = 728.0
+margin_right = -273.0
+margin_bottom = 2745.0
+rect_rotation = -89.9999
+mouse_filter = 2
+texture = SubResource( 2 )
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -288.0
+margin_top = -223.526
+margin_right = -163.0
+margin_bottom = -200.526
+rect_rotation = -3.72381
+rect_scale = Vector2( 4, 4 )
+text = "CHAIN 'em"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label3" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -56.0001
+margin_top = -175.527
+margin_right = 229.0
+margin_bottom = -152.527
+rect_rotation = 3.56688
+align = 1
+script = ExtResource( 20 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+texts = [ "feels empty here but idk what to write", "stop messaging me to work on pay-to-win blockchain games", "a stupid game made in 4 days", "chapter 2: the chainening" ]
+
+[node name="Label4" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -288.0
+margin_top = -96.0
+margin_right = -3.0
+margin_bottom = -73.0
+rect_scale = Vector2( 2, 2 )
+text = "SELECT AREA"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Areas" type="GridContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -464.0
+margin_top = -400.0
+margin_right = 456.0
+margin_bottom = -368.0
+mouse_filter = 2
+columns = 8
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="Areas"]
+margin_right = 128.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 128, 32 )
+theme = ExtResource( 2 )
+toggle_mode = true
+pressed = true
+action_mode = 0
+group = SubResource( 3 )
+text = "Square"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button2" type="Button" parent="Areas"]
+margin_left = 132.0
+margin_right = 260.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 128, 32 )
+theme = ExtResource( 2 )
+toggle_mode = true
+action_mode = 0
+group = SubResource( 3 )
+text = "Eye"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button3" type="Button" parent="Areas"]
+margin_left = 264.0
+margin_right = 392.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 128, 32 )
+theme = ExtResource( 2 )
+toggle_mode = true
+action_mode = 0
+group = SubResource( 3 )
+text = "Checkers"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button7" type="Button" parent="Areas"]
+margin_left = 396.0
+margin_right = 524.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 128, 32 )
+theme = ExtResource( 2 )
+toggle_mode = true
+action_mode = 0
+group = SubResource( 3 )
+text = "Diamond"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button4" type="Button" parent="Areas"]
+margin_left = 528.0
+margin_right = 656.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 128, 32 )
+theme = ExtResource( 2 )
+toggle_mode = true
+action_mode = 0
+group = SubResource( 3 )
+text = "Longboi"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button5" type="Button" parent="Areas"]
+margin_left = 660.0
+margin_right = 788.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 128, 32 )
+theme = ExtResource( 2 )
+toggle_mode = true
+action_mode = 0
+group = SubResource( 3 )
+text = "Megagem"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button6" type="Button" parent="Areas"]
+margin_left = 792.0
+margin_right = 920.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 128, 32 )
+theme = ExtResource( 2 )
+toggle_mode = true
+action_mode = 0
+group = SubResource( 3 )
+text = "Roads"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -400.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Levels" type="GridContainer" parent="CenterContainer"]
+margin_left = 152.0
+margin_top = 70.0
+margin_right = 1128.0
+margin_bottom = 330.0
+columns = 5
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+levels = [ ExtResource( 3 ), ExtResource( 5 ), ExtResource( 8 ), ExtResource( 10 ), ExtResource( 18 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 4 ), ExtResource( 9 ), ExtResource( 19 ) ]
+areas = [ ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 17 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ) ]
+areas_buttongroup = SubResource( 3 )
+
+[node name="Button" type="Button" parent="CenterContainer/Levels"]
+margin_right = 192.0
+margin_bottom = 128.0
+rect_min_size = Vector2( 192, 128 )
+theme = ExtResource( 2 )
+text = "180 Seconds"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CenterContainer/Levels/Button"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 7.99997
+margin_top = -32.0
+margin_right = 133.0
+margin_bottom = -9.0
+text = "NO HIGHSCORE"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button2" type="Button" parent="CenterContainer/Levels"]
+margin_left = 196.0
+margin_right = 388.0
+margin_bottom = 128.0
+rect_min_size = Vector2( 192, 128 )
+theme = ExtResource( 2 )
+text = "120 Seconds"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CenterContainer/Levels/Button2"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 7.99997
+margin_top = -32.0
+margin_right = 133.0
+margin_bottom = -9.0
+text = "NO HIGHSCORE"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button3" type="Button" parent="CenterContainer/Levels"]
+margin_left = 392.0
+margin_right = 584.0
+margin_bottom = 128.0
+rect_min_size = Vector2( 192, 128 )
+theme = ExtResource( 2 )
+text = "60 Seconds"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CenterContainer/Levels/Button3"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 7.99997
+margin_top = -32.0
+margin_right = 133.0
+margin_bottom = -9.0
+text = "NO HIGHSCORE"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button7" type="Button" parent="CenterContainer/Levels"]
+margin_left = 588.0
+margin_right = 780.0
+margin_bottom = 128.0
+rect_min_size = Vector2( 192, 128 )
+theme = ExtResource( 2 )
+text = "60 Seconds, x2 abilities"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CenterContainer/Levels/Button7"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 7.99997
+margin_top = -32.0
+margin_right = 133.0
+margin_bottom = -9.0
+text = "NO HIGHSCORE"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button4" type="Button" parent="CenterContainer/Levels"]
+margin_left = 784.0
+margin_right = 976.0
+margin_bottom = 128.0
+rect_min_size = Vector2( 192, 128 )
+theme = ExtResource( 2 )
+text = "80 Turns"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CenterContainer/Levels/Button4"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 7.99997
+margin_top = -32.0
+margin_right = 133.0
+margin_bottom = -9.0
+text = "NO HIGHSCORE"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button5" type="Button" parent="CenterContainer/Levels"]
+margin_top = 132.0
+margin_right = 192.0
+margin_bottom = 260.0
+rect_min_size = Vector2( 192, 128 )
+theme = ExtResource( 2 )
+text = "60 Turns"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CenterContainer/Levels/Button5"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 7.99997
+margin_top = -32.0
+margin_right = 133.0
+margin_bottom = -9.0
+text = "NO HIGHSCORE"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button6" type="Button" parent="CenterContainer/Levels"]
+margin_left = 196.0
+margin_top = 132.0
+margin_right = 388.0
+margin_bottom = 260.0
+rect_min_size = Vector2( 192, 128 )
+theme = ExtResource( 2 )
+text = "40 Turns"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CenterContainer/Levels/Button6"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 7.99997
+margin_top = -32.0
+margin_right = 133.0
+margin_bottom = -9.0
+text = "NO HIGHSCORE"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button8" type="Button" parent="CenterContainer/Levels"]
+margin_left = 392.0
+margin_top = 132.0
+margin_right = 584.0
+margin_bottom = 260.0
+rect_min_size = Vector2( 192, 128 )
+theme = ExtResource( 2 )
+text = "40 Turns, x2 abilities"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CenterContainer/Levels/Button8"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 7.99997
+margin_top = -32.0
+margin_right = 133.0
+margin_bottom = -9.0
+text = "NO HIGHSCORE"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button9" type="Button" parent="CenterContainer/Levels"]
+margin_left = 588.0
+margin_top = 132.0
+margin_right = 780.0
+margin_bottom = 260.0
+rect_min_size = Vector2( 192, 128 )
+theme = ExtResource( 2 )
+text = "40 Turns, x2 abilities"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CenterContainer/Levels/Button9"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 7.99997
+margin_top = -32.0
+margin_right = 133.0
+margin_bottom = -9.0
+text = "NO HIGHSCORE"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button10" type="Button" parent="CenterContainer/Levels"]
+margin_left = 784.0
+margin_top = 132.0
+margin_right = 976.0
+margin_bottom = 260.0
+rect_min_size = Vector2( 192, 128 )
+theme = ExtResource( 2 )
+text = "40 Turns, x2 abilities"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CenterContainer/Levels/Button10"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 7.99997
+margin_top = -32.0
+margin_right = 133.0
+margin_bottom = -9.0
+text = "NO HIGHSCORE"
+__meta__ = {
+"_edit_use_anchors_": false
+}

@@ -1,0 +1,52 @@
+[gd_resource type="Resource" load_steps=8 format=2]
+
+[ext_resource path="res://src/Abilities/AbilityData.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Graphics/GemAtlases/G4.tres" type="Texture" id=2]
+[ext_resource path="res://Assets/Audio/Board/AbilityReady.wav" type="AudioStream" id=3]
+[ext_resource path="res://Assets/Audio/Abilities/RecolorSelect.wav" type="AudioStream" id=4]
+[ext_resource path="res://Assets/Audio/Abilities/RecolorActivate.wav" type="AudioStream" id=5]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends AbilityActions
+
+
+func get_highlight_color(gem, selected_gem) -> Color:
+	return Color.white if gem.color != 5 else Board.unhighlighted_color
+
+
+func activate(board, _gem):
+	var target_color = randi() % 5
+	var left_to_transform = 15
+	var arr = board.board_contents.values()
+	arr.shuffle()
+	
+	for x in arr:
+		if x.color == 5 || x.color == target_color:
+			continue
+
+		x.emit_particles()
+		x.set_color(target_color)
+
+		left_to_transform -= 1
+		if left_to_transform == 0:
+			break
+	
+	return true
+"
+
+[sub_resource type="AudioStreamRandomPitch" id=2]
+audio_stream = ExtResource( 3 )
+random_pitch = 1.2
+
+[resource]
+script = ExtResource( 1 )
+name = "COLOR BWRGHL"
+description = "Change 15 random gems to a random color."
+icon = ExtResource( 2 )
+color = Color( 0.890196, 0.266667, 1, 1 )
+max_charges = 4
+charge_needed = 20
+actions = SubResource( 1 )
+sfx_ready = SubResource( 2 )
+sfx_select = ExtResource( 4 )
+sfx_activate = ExtResource( 5 )
