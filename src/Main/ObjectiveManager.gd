@@ -25,25 +25,21 @@ func _process(_delta):
 
 func calculate_score(chain:Array, score_mult:float = 1) -> int:
 	var result = 0
-	var rainbow_only = true
+	var length_mult = 1
+	# var length_mult = pow(1.5, chain.size() / 2 - 1)
 
 	for gem in chain:
 		if gem.color != 5:
 			result += 10
-			rainbow_only = false
 		
 		else:
-			result += 40
-		
-	# Every three gems add a 0.5x multiplier.
+			result += 30
+			
+	# Every two gems add a 0.5x multiplier.
 	if chain.size() >= 3:
-		result *= (chain.size() / 3) * 0.5 + 0.5
+		result *= (chain.size() - 3) / 2 * 0.5 + 1
 
-	# A sacrifice for victory.
-	if rainbow_only:
-		result *= chain.size()
-
-	return result * score_mult * Meta.current_level.score_mult
+	return int(result * length_mult * score_mult * Meta.current_level.score_mult)
 		
 
 func preview_score(chain:Array, score_mult:float = 1):

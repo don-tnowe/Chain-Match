@@ -28,7 +28,7 @@ func activate(board, gem):
 		return false
 
 	else:
-		board.collect_chain(selection, true, 15)
+		board.collect_chain(selection, true, 10)
 		selection = []
 		return true
 
