@@ -72,9 +72,10 @@ func set_score(v:int):
 
 
 func update_fail(countdown:int):
-	node_fail_counter.text = str(level.fail_countdown - countdown)
+	var left = level.fail_condition.countdown - countdown
+	node_fail_counter.text = str(left)
 		
-	if countdown > level.fail_countdown:
+	if left == 0:
 		fail()
 
 
@@ -88,16 +89,24 @@ func fail():
 
 func set_turns(v):
 	turns_since_start = v
-	if level.fail_objective == Level.FAIL_TURNS:
-		update_fail(v)
 
 	if v == 1:
 		$"TimerSeconds".start()
+		
+	if !is_instance_valid(level.fail_condition):
+		return
+		
+	if level.fail_condition.type == FailCondition.TURNS:
+		update_fail(v)
 
 
 func set_seconds(v):
 	seconds_since_start = v
-	if level.fail_objective == Level.FAIL_TIME:
+	
+	if !is_instance_valid(level.fail_condition):
+		return
+		
+	if level.fail_condition.type == FailCondition.TIME:
 		update_fail(v)
 
 		

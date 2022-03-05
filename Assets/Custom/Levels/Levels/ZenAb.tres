@@ -5,6 +5,5 @@
 [resource]
 script = ExtResource( 1 )
 name = "Zen x2"
-fail_countdown = 9999
-fail_objective = 1
+score_mult = 1
 abil_mult = 2

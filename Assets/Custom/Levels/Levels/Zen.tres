@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource( 1 )
-name = "60 Turns"
-fail_countdown = 60
-fail_objective = 1
+name = "Zen (No fail state)"
+score_mult = 1
+abil_mult = 1
