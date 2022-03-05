@@ -107,8 +107,7 @@ func select():
 		node_board.selected_ability.release()
 		
 	node_board.selected_ability = self
-	node_board.selected_gem = null
-	node_board.unhighlight_all_gems()
+	node_board.highlight_all_gems()
 	node_button.self_modulate = data.color * 2
 	$"SoundSelect".play()
 
