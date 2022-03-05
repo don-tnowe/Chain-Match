@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/AbilityClick.wav-f533ca79292fb94eebdfbff1b180b1b6.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Board/AbilityClick.wav"
+dest_files=[ "res://.import/AbilityClick.wav-f533ca79292fb94eebdfbff1b180b1b6.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

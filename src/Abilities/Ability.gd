@@ -127,8 +127,8 @@ func activate() -> bool:
 		update_charge_count()
 		$"SoundActivate".play()
 		return true
-
-	node_button.self_modulate = Color(2, 2, 2, 1)
+	
+	$"SoundClick".play()
 	return false
 
 
