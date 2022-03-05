@@ -87,7 +87,7 @@ script = ExtResource( 20 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-texts = [ "feels empty here but idk what to write", "stop messaging me to work on pay-to-win blockchain games", "a stupid game made in 4 days", "chapter 2: the chainening" ]
+texts = [ "feels empty here but idk what to write", "stop messaging me to work on pay-to-win blockchain games", "a stupid game made in a week or so", "chapter 2: the chainening" ]
 
 [node name="Label4" type="Label" parent="."]
 anchor_left = 0.5
