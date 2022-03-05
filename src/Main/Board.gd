@@ -76,6 +76,10 @@ func mouse_enter_gem(gem:Gem):
 
 		return
 		
+	# If it's the chain's last gem, no action.
+	if chain_tip == gem && chain_tip.idx_in_chain > 1:
+		return
+
 	# if it's in the chain, trace chain back 
 	if gem.idx_in_chain != -1:
 		# (but not too far back!)
@@ -382,6 +386,7 @@ func mouse_leave_board():
 	if !is_instance_valid(selected_gem):
 		return
 		
-	selected_gem.modulate = Color.white
-	selected_gem = null
+	if !is_instance_valid(chain_tip):
+		selected_gem.modulate = Color.white
+		selected_gem = null
 				
