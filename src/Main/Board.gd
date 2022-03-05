@@ -34,6 +34,7 @@ func _ready():
 
 
 func load_board(texture:Texture):
+	var fall_from = {}
 	var img = texture.get_data()
 	img.lock()
 	node_board.clear()
@@ -46,15 +47,18 @@ func load_board(texture:Texture):
 			if tile == 0:
 				var gem = scene_gem.instance()
 				node_board.add_child(gem)
-				gem.set_color(get_random_gem_color())
 				gem.connect("mouse_entered", self, "mouse_enter_gem", [gem])
 				gem.position = Vector2(i, j) * board_cell_size + board_cell_size * 0.5
 		
 				board_contents[gem.position] = gem
+				fall_from[gem.position] = Vector2(0, -img.get_size().y * board_cell_size.y)
 				board_rect = board_rect.expand(gem.position)
 			
 	$"TL".position -= img.get_size() * node_board.cell_size * 0.5 
 	img.unlock()
+
+	drop_chain(fall_from)
+	node_tween.start()
 
 
 func mouse_enter_gem(gem:Gem):
@@ -231,13 +235,13 @@ func drop_chain(fall_from:Dictionary):
 		else:
 			new_colors[x] = board_contents[x + fall_from[x]].color
 			
-		play_fall_animation(x, edge, fall_from)
+		play_fall_animation(x, fall_from[x], edge)
 
 	for x in new_colors:
 		board_contents[x].set_color(new_colors[x])
 
 
-func play_fall_animation(gem_pos:Vector2, edge:Vector2, fall_from:Dictionary):
+func play_fall_animation(gem_pos:Vector2, fall_from:Vector2, edge:Vector2):
 	var anim_time = 0.5
 	var anim_delay = (
 		abs(gem_pos.y - edge.y)
@@ -247,12 +251,12 @@ func play_fall_animation(gem_pos:Vector2, edge:Vector2, fall_from:Dictionary):
 
 	node_tween.interpolate_property(
 		board_contents[gem_pos].node_sprite, "position",
-		fall_from[gem_pos], fall_from[gem_pos] + kickback, anim_delay,
+		fall_from, fall_from + kickback, anim_delay,
 		Tween.TRANS_CUBIC, Tween.EASE_OUT
 	)
 	node_tween.interpolate_property(
 		board_contents[gem_pos].node_sprite, "position",
-		fall_from[gem_pos] + kickback, Vector2(0, -0.5 * kickback.y), anim_time,
+		fall_from + kickback, Vector2(0, -0.5 * kickback.y), anim_time,
 		Tween.TRANS_QUART, Tween.EASE_IN, anim_delay
 	)
 	node_tween.interpolate_property(
