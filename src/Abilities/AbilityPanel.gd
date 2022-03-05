@@ -22,8 +22,8 @@ func mouse_entered(target:Control):
 	target.margin_right = size_selected
 	if target.charges_held > 0:
 		node_tween.interpolate_property(
-			target.node_button, "self_modulate", 
-			Color(2, 2, 2, 1), target.data.color, 0.5,
+			target.node_button, "modulate", 
+			Color(2, 2, 2, 1), Color.white, 0.5,
 			Tween.TRANS_CUBIC, Tween.EASE_OUT
 		)
 	$"Sound".pitch_scale = 1.5
