@@ -48,7 +48,7 @@ func load_board(texture:Texture):
 			if tile == 0:
 				var gem = scene_gem.instance()
 				node_board.add_child(gem)
-				gem.connect("mouse_entered", self, "mouse_enter_gem", [gem])
+				gem.connect("input_event", self, "input_on_gem", [gem])
 				gem.position = Vector2(i, j) * board_cell_size + board_cell_size * 0.5
 		
 				board_contents[gem.position] = gem
@@ -362,16 +362,20 @@ func compare_y(a:Gem, b:Gem):
 		return a.position.y > b.position.y
 
 
-func _unhandled_input(event):
+func input_on_gem(_viewport:Node, event:InputEvent, _shape_idx:int, gem:Gem):
 	if event is InputEventScreenTouch:
 		if event.pressed:
-			var pos = (
-					event.position 
-					- node_board.global_position 
-					+ board_cell_size * 0.5
-				).snapped(board_cell_size) - board_cell_size * 0.5
-			selected_gem = board_contents.get(pos)
+			selected_gem = gem
+			if selected_ability == null:
+				stop_chain(true)  # Apparently the input_event signal is emmitted after tree _input 
+				start_chain(gem)
 
+	elif event is InputEventMouseMotion || event is InputEventScreenDrag:
+		if selected_gem != gem:
+			mouse_enter_gem(gem)
+
+
+func _unhandled_input(event):
 	if event is InputEventScreenDrag:
 		if event.index > 0: 
 			node_board_tl.position += event.relative
@@ -383,13 +387,13 @@ func _unhandled_input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
 			if event.pressed:
-				if selected_ability != null:
-					activate_ability()
-
-				elif selected_gem != null:
+				if selected_ability == null && selected_gem != null && !is_instance_valid(chain_tip):
 					start_chain(selected_gem)
 
 			else:
+				if selected_ability != null:
+					activate_ability()
+
 				stop_chain()
 
 		elif event.button_index == BUTTON_RIGHT:
