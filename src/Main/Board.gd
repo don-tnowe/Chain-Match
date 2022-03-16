@@ -362,6 +362,17 @@ func compare_y(a:Gem, b:Gem):
 
 
 func _unhandled_input(event):
+	if event is InputEventScreenTouch:
+		if event.pressed:
+			var pos = (
+					event.position 
+					- node_board.global_position 
+					- board_rect.position 
+					+ board_cell_size * 0.5
+				).snapped(board_cell_size) - board_cell_size * 0.5
+			selected_gem = board_contents.get(pos)
+
+
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
 			if event.pressed:
