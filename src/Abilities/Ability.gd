@@ -2,6 +2,9 @@
 class_name Ability
 extends Control
 
+signal activated
+signal cancelled
+
 onready var node_board
 onready var node_button := $"Button"
 onready var node_icon := $"Icon"
@@ -100,8 +103,14 @@ func select():
 
 	get_tree().set_input_as_handled()
 
+	if node_board.selected_ability == self:
+		release()
+		node_board.selected_ability = null
+		node_board.highlight_all_gems()
+		return
+
 	if node_board.selected_ability != null:
-		node_board.selected_ability.release()
+		node_board.selected_ability.release(true)
 		
 	node_board.selected_ability = self
 	node_board.highlight_all_gems()
@@ -109,9 +118,11 @@ func select():
 	$"SoundSelect".play()
 
 
-func release():
+func release(chosen_another:bool = false):
 	update_charge_count()
 	actions.cancel()
+	if !chosen_another:
+		emit_signal("cancelled")
 
 
 func activate() -> bool:
@@ -122,6 +133,7 @@ func activate() -> bool:
 	
 		charges_held -= 1
 		update_charge_count()
+		emit_signal("activated")
 		$"SoundActivate".play()
 		return true
 	

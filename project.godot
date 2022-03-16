@@ -78,7 +78,7 @@ Meta="*res://src/Meta.gd"
 
 [display]
 
-window/size/width=405
+window/size/width=400
 window/size/height=720
 window/size/test_width=600
 window/size/test_height=479

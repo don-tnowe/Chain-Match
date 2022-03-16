@@ -1,0 +1,122 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Assets/DefaultTheme.tres" type="Theme" id=1]
+[ext_resource path="res://src/Abilities/AbilityPanelM.gd" type="Script" id=2]
+[ext_resource path="res://src/Abilities/Ability.gd" type="Script" id=3]
+[ext_resource path="res://src/Abilities/AbilityButtonM.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/Audio/Board/TouchPanel.wav" type="AudioStream" id=5]
+
+[node name="Abilities" type="Control"]
+anchor_right = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Buttons" type="Control" parent="."]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = 152.0
+margin_bottom = 298.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Ability" parent="Buttons" instance=ExtResource( 4 )]
+anchor_right = 0.2
+rect_clip_content = true
+script = ExtResource( 3 )
+
+[node name="Collect" type="Node2D" parent="Buttons/Ability"]
+position = Vector2( 38, 36 )
+
+[node name="Ability2" parent="Buttons" instance=ExtResource( 4 )]
+anchor_left = 0.2
+anchor_right = 0.4
+rect_clip_content = true
+script = ExtResource( 3 )
+
+[node name="Collect" type="Node2D" parent="Buttons/Ability2"]
+position = Vector2( 38, 36 )
+
+[node name="Ability3" parent="Buttons" instance=ExtResource( 4 )]
+anchor_left = 0.4
+anchor_right = 0.6
+rect_clip_content = true
+script = ExtResource( 3 )
+
+[node name="Collect" type="Node2D" parent="Buttons/Ability3"]
+position = Vector2( 38, 36 )
+
+[node name="Ability4" parent="Buttons" instance=ExtResource( 4 )]
+anchor_left = 0.6
+anchor_right = 0.8
+rect_clip_content = true
+script = ExtResource( 3 )
+
+[node name="Collect" type="Node2D" parent="Buttons/Ability4"]
+position = Vector2( 38, 36 )
+
+[node name="Ability5" parent="Buttons" instance=ExtResource( 4 )]
+anchor_left = 0.8
+rect_clip_content = true
+script = ExtResource( 3 )
+
+[node name="Collect" type="Node2D" parent="Buttons/Ability5"]
+position = Vector2( 38, 36 )
+
+[node name="Panel" type="Panel" parent="."]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = 152.0
+margin_bottom = 224.0
+rect_clip_content = true
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Panel"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -264.0
+margin_top = 4.0
+margin_bottom = 27.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_scale = Vector2( 2, 2 )
+text = "scasc"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="Panel"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -264.0
+margin_top = -34.0
+margin_right = 88.0
+margin_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_scale = Vector2( 1.5, 1.5 )
+text = "scasc"
+align = 1
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+
+[node name="Tween" type="Tween" parent="."]
