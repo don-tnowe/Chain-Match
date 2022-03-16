@@ -5,6 +5,7 @@ export(PackedScene) var scene_gem
 
 onready var node_board := $"TL/Board"
 onready var node_line := $"TL/Line"
+onready var node_board_tl := $"TL"
 onready var node_tween := $"Tween"
 onready var objective := $"Objective"
 
@@ -54,7 +55,7 @@ func load_board(texture:Texture):
 				fall_from[gem.position] = Vector2(0, -img.get_size().y * board_cell_size.y)
 				board_rect = board_rect.expand(gem.position)
 			
-	$"TL".position -= img.get_size() * node_board.cell_size * 0.5 
+	node_board_tl.position -= img.get_size() * node_board.cell_size * 0.5 
 	img.unlock()
 
 	drop_chain(fall_from)
@@ -367,11 +368,17 @@ func _unhandled_input(event):
 			var pos = (
 					event.position 
 					- node_board.global_position 
-					- board_rect.position 
 					+ board_cell_size * 0.5
 				).snapped(board_cell_size) - board_cell_size * 0.5
 			selected_gem = board_contents.get(pos)
 
+	if event is InputEventScreenDrag:
+		if event.index > 0: 
+			node_board_tl.position += event.relative
+			node_board_tl.position = Vector2(
+				clamp(node_board_tl.position.x, -board_rect.size.x, 0),
+				clamp(node_board_tl.position.y, -board_rect.size.y, 0)
+			)
 
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
