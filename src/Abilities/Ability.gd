@@ -2,8 +2,6 @@
 class_name Ability
 extends Control
 
-export(NodePath) var path_board
-
 onready var node_board
 onready var node_button := $"Button"
 onready var node_icon := $"Icon"
@@ -20,7 +18,6 @@ var recharge := 0
 
 
 func _ready():
-	node_board = get_node(path_board)
 	set_ability(Meta.abilities[get_position_in_parent()])
 	node_button.shortcut.shortcut.scancode += get_position_in_parent()
 	update_charge_count()
@@ -137,4 +134,8 @@ func can_cast() -> bool:
 
 
 func get_highlight_color(gem:Gem) -> Color:
-  return actions.get_highlight_color(gem, node_board.selected_gem)
+	if is_instance_valid(node_board.selected_gem):
+		return actions.get_highlight_color(gem, node_board.selected_gem)
+	
+	else:
+		return node_board.unhighlighted_color

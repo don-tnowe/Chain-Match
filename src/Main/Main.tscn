@@ -6,16 +6,16 @@
 [ext_resource path="res://Assets/Graphics/BoardTiles.png" type="Texture" id=4]
 [ext_resource path="res://Assets/Audio/Board/Drop1.wav" type="AudioStream" id=5]
 [ext_resource path="res://Assets/Audio/Board/Collect.wav" type="AudioStream" id=6]
-[ext_resource path="res://src/Abilities/AbilityButton.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/Main/AbilitiesMobile.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/BoardGems/Gem.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Assets/DefaultTheme.tres" type="Theme" id=9]
 [ext_resource path="res://src/Main/ObjectiveManager.gd" type="Script" id=10]
 [ext_resource path="res://src/Main/Failure.tscn" type="PackedScene" id=11]
-[ext_resource path="res://src/Abilities/AbilityPanel.gd" type="Script" id=12]
-[ext_resource path="res://Assets/Audio/Board/TouchPanel.wav" type="AudioStream" id=13]
+[ext_resource path="res://src/Main/AbilitiesDesktop.tscn" type="PackedScene" id=12]
+[ext_resource path="res://src/Main/AdaptiveUIManager.gd" type="Script" id=15]
 
 [sub_resource type="Gradient" id=3]
-offsets = PoolRealArray( 0.178082, 0.760274, 1 )
+offsets = PoolRealArray( 0.331707, 0.585366, 1 )
 colors = PoolColorArray( 0.0434761, 0.0555488, 0.0849609, 1, 0.464902, 0.360703, 0.230465, 1, 0.913086, 0.685232, 0.385208, 1 )
 
 [sub_resource type="GradientTexture" id=2]
@@ -73,7 +73,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 __meta__ = {
-"_edit_lock_": true
+"_edit_use_anchors_": false
 }
 
 [node name="BG2" type="CanvasLayer" parent="."]
@@ -81,84 +81,27 @@ layer = -1
 
 [node name="BG" type="TextureRect" parent="BG2"]
 show_behind_parent = true
-margin_left = -881.0
-margin_top = 728.0
-margin_right = -153.0
-margin_bottom = 3917.0
-rect_rotation = -89.9999
-mouse_filter = 2
-texture = SubResource( 2 )
-stretch_mode = 1
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="Abilities" type="Control" parent="."]
-anchor_bottom = 1.0
-margin_top = 160.0
-margin_bottom = -152.0
-script = ExtResource( 12 )
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="Buttons" type="Control" parent="Abilities"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_top = -188.0
-margin_right = 170.0
-margin_bottom = 182.0
+margin_left = -1492.0
+margin_top = 1024.0
+margin_right = -776.0
+margin_bottom = 1390.0
+rect_rotation = -89.9999
+rect_scale = Vector2( 2.62822, 8.50695 )
+mouse_filter = 2
+texture = SubResource( 2 )
+stretch_mode = 1
 __meta__ = {
-"_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
-[node name="Fire" parent="Abilities/Buttons" instance=ExtResource( 7 )]
-anchor_bottom = 0.2
-path_board = NodePath("../../../Board")
-
-[node name="Collect" type="Node2D" parent="Abilities/Buttons/Fire"]
-position = Vector2( 42, 37 )
-
-[node name="Hammer" parent="Abilities/Buttons" instance=ExtResource( 7 )]
-anchor_top = 0.2
-anchor_bottom = 0.4
-path_board = NodePath("../../../Board")
-
-[node name="Collect" type="Node2D" parent="Abilities/Buttons/Hammer"]
-position = Vector2( 42, 37 )
-
-[node name="Link" parent="Abilities/Buttons" instance=ExtResource( 7 )]
-anchor_top = 0.4
-anchor_bottom = 0.6
-path_board = NodePath("../../../Board")
-
-[node name="Collect" type="Node2D" parent="Abilities/Buttons/Link"]
-position = Vector2( 42, 37 )
-
-[node name="Lightning" parent="Abilities/Buttons" instance=ExtResource( 7 )]
-anchor_top = 0.6
-anchor_bottom = 0.8
-path_board = NodePath("../../../Board")
-
-[node name="Collect" type="Node2D" parent="Abilities/Buttons/Lightning"]
-position = Vector2( 42, 37 )
-
-[node name="Recolor" parent="Abilities/Buttons" instance=ExtResource( 7 )]
-anchor_top = 0.8
-path_board = NodePath("../../../Board")
-
-[node name="Collect" type="Node2D" parent="Abilities/Buttons/Recolor"]
-position = Vector2( 42, 37 )
-
-[node name="Sound" type="AudioStreamPlayer" parent="Abilities"]
-stream = ExtResource( 13 )
-
-[node name="Tween" type="Tween" parent="Abilities"]
+[node name="AdaptiveUIManager" type="Node" parent="."]
+script = ExtResource( 15 )
+path_board = NodePath("../Board")
+scene_abilities = [ ExtResource( 12 ), ExtResource( 7 ) ]
 
 [node name="Board" type="Control" parent="."]
 show_behind_parent = true
@@ -166,12 +109,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
+margin_top = 136.0
+margin_bottom = 136.0
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false
 }
-pip_collectors = [ NodePath("../Abilities/Buttons/Fire/Collect"), NodePath("../Abilities/Buttons/Hammer/Collect"), NodePath("../Abilities/Buttons/Link/Collect"), NodePath("../Abilities/Buttons/Lightning/Collect"), NodePath("../Abilities/Buttons/Recolor/Collect") ]
 scene_gem = ExtResource( 8 )
 
 [node name="TL" type="Area2D" parent="Board"]
@@ -328,7 +272,6 @@ margin_bottom = 44.0
 rect_scale = Vector2( 2, 2 )
 text = "x"
 
-[connection signal="tween_completed" from="Abilities/Tween" to="Abilities" method="_on_Tween_tween_completed"]
 [connection signal="mouse_exited" from="Board/TL" to="Board" method="mouse_leave_board"]
 [connection signal="failed" from="Board/Objective" to="CanvasLayer/Failure" method="display"]
 [connection signal="timeout" from="Board/Objective/TimerSeconds" to="Board/Objective" method="increment_second"]

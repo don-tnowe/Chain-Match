@@ -1,7 +1,6 @@
 class_name Board
 extends Control
 
-export(Array, NodePath) var pip_collectors := []
 export(PackedScene) var scene_gem
 
 onready var node_board := $"TL/Board"
@@ -24,6 +23,7 @@ var bag_discard := [0, 0, 0, 0, 0, 0]
 var chain_tip : Gem
 var selected_gem : Gem
 
+var pip_collectors := [null, null, null, null, null]
 var selected_ability
 
 
@@ -157,10 +157,13 @@ func play_collect_vfx(gem:Gem, chain:Array):
 	if gem.color >= 5:
 		return
 
+	if !is_instance_valid(pip_collectors[gem.color]):
+		return
+
+	var collector = pip_collectors[gem.color]
 	var time1 = 0.5
 	var time_wait = randf() * chain.size() * 0.05
 	var time2 = 0.5
-	var collector = get_node(pip_collectors[gem.color])
 
 	# position
 	var dest1 = gem.global_position + Vector2(randf() - 0.5, randf() - 0.5) * 192
