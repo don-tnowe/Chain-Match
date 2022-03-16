@@ -4,7 +4,7 @@ export(Array, Resource) var levels = []
 export(Array, Texture) var areas = []
 export(ButtonGroup) var areas_buttongroup
 
-onready var node_areas = $"../../Areas"
+onready var node_areas = $"../Areas"
 
 
 func _ready():

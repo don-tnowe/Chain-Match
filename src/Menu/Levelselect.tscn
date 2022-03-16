@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://src/Menu/Levelselect.gd" type="Script" id=1]
 [ext_resource path="res://Assets/DefaultTheme.tres" type="Theme" id=2]
@@ -20,6 +20,7 @@
 [ext_resource path="res://Assets/Custom/Levels/Levels/Zen.tres" type="Resource" id=18]
 [ext_resource path="res://Assets/Custom/Levels/Levels/ZenAb.tres" type="Resource" id=19]
 [ext_resource path="res://src/Menu/RandomTitle.gd" type="Script" id=20]
+[ext_resource path="res://src/Menu/TouchScroll.gd" type="Script" id=21]
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0, 0.12987, 0.818182, 1 )
@@ -218,23 +219,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="Levels" type="GridContainer" parent="."]
 anchor_left = 0.5
-anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 1.0
 margin_left = -488.0
-margin_top = -400.0
+margin_top = 392.0
 margin_right = 488.0
-mouse_filter = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Levels" type="GridContainer" parent="CenterContainer"]
-margin_top = 70.0
-margin_right = 976.0
-margin_bottom = 330.0
+margin_bottom = 652.0
 columns = 5
 script = ExtResource( 1 )
 __meta__ = {
@@ -244,7 +235,7 @@ levels = [ ExtResource( 3 ), ExtResource( 5 ), ExtResource( 8 ), ExtResource( 10
 areas = [ ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 17 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ) ]
 areas_buttongroup = SubResource( 3 )
 
-[node name="Button" type="Button" parent="CenterContainer/Levels"]
+[node name="Button" type="Button" parent="Levels"]
 margin_right = 192.0
 margin_bottom = 128.0
 rect_min_size = Vector2( 192, 128 )
@@ -254,7 +245,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="CenterContainer/Levels/Button"]
+[node name="Label" type="Label" parent="Levels/Button"]
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_left = 7.99997
@@ -266,7 +257,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button2" type="Button" parent="CenterContainer/Levels"]
+[node name="Button2" type="Button" parent="Levels"]
 margin_left = 196.0
 margin_right = 388.0
 margin_bottom = 128.0
@@ -277,7 +268,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="CenterContainer/Levels/Button2"]
+[node name="Label" type="Label" parent="Levels/Button2"]
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_left = 7.99997
@@ -289,7 +280,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button3" type="Button" parent="CenterContainer/Levels"]
+[node name="Button3" type="Button" parent="Levels"]
 margin_left = 392.0
 margin_right = 584.0
 margin_bottom = 128.0
@@ -300,7 +291,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="CenterContainer/Levels/Button3"]
+[node name="Label" type="Label" parent="Levels/Button3"]
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_left = 7.99997
@@ -312,7 +303,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button7" type="Button" parent="CenterContainer/Levels"]
+[node name="Button7" type="Button" parent="Levels"]
 margin_left = 588.0
 margin_right = 780.0
 margin_bottom = 128.0
@@ -323,7 +314,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="CenterContainer/Levels/Button7"]
+[node name="Label" type="Label" parent="Levels/Button7"]
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_left = 7.99997
@@ -335,7 +326,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button4" type="Button" parent="CenterContainer/Levels"]
+[node name="Button4" type="Button" parent="Levels"]
 margin_left = 784.0
 margin_right = 976.0
 margin_bottom = 128.0
@@ -346,7 +337,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="CenterContainer/Levels/Button4"]
+[node name="Label" type="Label" parent="Levels/Button4"]
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_left = 7.99997
@@ -358,7 +349,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button5" type="Button" parent="CenterContainer/Levels"]
+[node name="Button5" type="Button" parent="Levels"]
 margin_top = 132.0
 margin_right = 192.0
 margin_bottom = 260.0
@@ -369,7 +360,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="CenterContainer/Levels/Button5"]
+[node name="Label" type="Label" parent="Levels/Button5"]
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_left = 7.99997
@@ -381,7 +372,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button6" type="Button" parent="CenterContainer/Levels"]
+[node name="Button6" type="Button" parent="Levels"]
 margin_left = 196.0
 margin_top = 132.0
 margin_right = 388.0
@@ -393,7 +384,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="CenterContainer/Levels/Button6"]
+[node name="Label" type="Label" parent="Levels/Button6"]
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_left = 7.99997
@@ -405,7 +396,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button8" type="Button" parent="CenterContainer/Levels"]
+[node name="Button8" type="Button" parent="Levels"]
 margin_left = 392.0
 margin_top = 132.0
 margin_right = 584.0
@@ -417,7 +408,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="CenterContainer/Levels/Button8"]
+[node name="Label" type="Label" parent="Levels/Button8"]
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_left = 7.99997
@@ -429,7 +420,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button9" type="Button" parent="CenterContainer/Levels"]
+[node name="Button9" type="Button" parent="Levels"]
 margin_left = 588.0
 margin_top = 132.0
 margin_right = 780.0
@@ -441,7 +432,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="CenterContainer/Levels/Button9"]
+[node name="Label" type="Label" parent="Levels/Button9"]
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_left = 7.99997
@@ -453,7 +444,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button10" type="Button" parent="CenterContainer/Levels"]
+[node name="Button10" type="Button" parent="Levels"]
 margin_left = 784.0
 margin_top = 132.0
 margin_right = 976.0
@@ -465,7 +456,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="CenterContainer/Levels/Button10"]
+[node name="Label" type="Label" parent="Levels/Button10"]
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_left = 7.99997
@@ -476,3 +467,14 @@ text = "NO HIGHSCORE"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Scroll" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource( 21 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+scrolls_y = false
+scrollable_containers = [ NodePath("../Areas"), NodePath("../Levels") ]
