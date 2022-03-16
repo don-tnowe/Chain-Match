@@ -36,7 +36,7 @@ func clear_chain():
 
 func emit_particles(_x = true):
 	emit_particle = false
-	$"Ptcl/Color".process_material.color_ramp = types[color].color_ramp
+	$"Ptcl/Color".color_ramp = types[color].color_ramp.gradient
 	$"Ptcl/Color".restart()
 	$"Ptcl/Color".emitting = true
 	$"Ptcl/White".restart()
