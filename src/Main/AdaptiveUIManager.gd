@@ -2,6 +2,7 @@ extends Node
 
 
 export(NodePath) var path_board
+export(NodePath) var path_time
 export(Array, PackedScene) var scene_abilities := [null, null]
 export(Array, int) var board_top := [0, 136]
 
@@ -16,7 +17,7 @@ func _ready():
 func align(platform_idx:int):
 	var abis = scene_abilities[platform_idx].instance()
 	var brd = get_node(path_board)
-	
+
 	brd.margin_top = board_top[platform_idx]
 	get_parent().add_child(abis)
 	

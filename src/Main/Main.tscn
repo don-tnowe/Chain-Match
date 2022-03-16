@@ -95,12 +95,14 @@ mouse_filter = 2
 texture = SubResource( 2 )
 stretch_mode = 1
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_lock_": true,
+"_edit_use_anchors_": true
 }
 
 [node name="AdaptiveUIManager" type="Node" parent="."]
 script = ExtResource( 15 )
 path_board = NodePath("../Board")
+path_time = NodePath("../Time")
 scene_abilities = [ ExtResource( 12 ), ExtResource( 7 ) ]
 
 [node name="Board" type="Control" parent="."]
@@ -145,9 +147,9 @@ default_color = Color( 1, 1, 1, 1 )
 
 [node name="Objective" type="Node" parent="Board"]
 script = ExtResource( 10 )
-node_fail_counter = NodePath("../../CanvasLayer/Time/Time")
-node_score = NodePath("../../CanvasLayer/Score/ScoreScaler/Score")
-node_score2 = NodePath("../../CanvasLayer/Score/Score2")
+node_fail_counter = NodePath("../../Time/Time")
+node_score = NodePath("../../Score/ScoreScaler/Score")
+node_score2 = NodePath("../../Score/Score2")
 
 [node name="TimerSeconds" type="Timer" parent="Board/Objective"]
 
@@ -168,19 +170,17 @@ stream = ExtResource( 2 )
 volume_db = -9.0
 pitch_scale = 2.0
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Score" type="Control" parent="CanvasLayer"]
+[node name="Score" type="Control" parent="."]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_top = 64.0
-margin_bottom = 64.0
+margin_top = 48.0
+margin_bottom = 48.0
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="CanvasLayer/Score"]
+[node name="Label" type="Label" parent="Score"]
 margin_left = -55.0
 margin_top = -24.0
 margin_bottom = -1.0
@@ -192,13 +192,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ScoreScaler" type="Node2D" parent="CanvasLayer/Score"]
+[node name="ScoreScaler" type="Node2D" parent="Score"]
 position = Vector2( 0, 32 )
 
-[node name="Score" type="Label" parent="CanvasLayer/Score/ScoreScaler"]
-margin_left = -80.0
+[node name="Score" type="Label" parent="Score/ScoreScaler"]
+margin_left = -82.0
 margin_top = -32.0
-margin_right = -25.0
+margin_right = -27.0
 margin_bottom = -9.0
 rect_scale = Vector2( 3, 3 )
 theme = ExtResource( 9 )
@@ -208,7 +208,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Score2" type="Label" parent="CanvasLayer/Score"]
+[node name="Score2" type="Label" parent="Score"]
 margin_left = -59.0
 margin_top = 48.0
 margin_right = 1.0
@@ -221,26 +221,31 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Time" type="Control" parent="CanvasLayer"]
+[node name="Time" type="Control" parent="."]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
+margin_left = -120.0
+margin_top = -568.0
+margin_right = -120.0
+margin_bottom = -568.0
+rect_scale = Vector2( 0.5, 0.5 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
-[node name="Time" type="Label" parent="CanvasLayer/Time"]
+[node name="Time" type="Label" parent="Time"]
 self_modulate = Color( 1, 0.815686, 0.172549, 1 )
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -104.0
-margin_top = -120.0
-margin_right = -49.0
-margin_bottom = -97.0
+margin_left = -112.0
+margin_top = -128.0
+margin_right = -57.0
+margin_bottom = -105.0
 rect_scale = Vector2( 4, 4 )
 theme = ExtResource( 9 )
 text = "???"
@@ -249,7 +254,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label2" type="Label" parent="CanvasLayer/Time/Time"]
+[node name="Label2" type="Label" parent="Time/Time"]
 margin_top = -16.0
 margin_right = 55.0
 margin_bottom = 7.0
@@ -259,6 +264,8 @@ align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Failure" parent="CanvasLayer" instance=ExtResource( 11 )]
 

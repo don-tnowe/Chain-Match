@@ -219,19 +219,21 @@ __meta__ = {
 }
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_left = 0.5
 anchor_top = 1.0
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
+margin_left = -488.0
 margin_top = -400.0
+margin_right = 488.0
 mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Levels" type="GridContainer" parent="CenterContainer"]
-margin_left = 152.0
 margin_top = 70.0
-margin_right = 1128.0
+margin_right = 976.0
 margin_bottom = 330.0
 columns = 5
 script = ExtResource( 1 )
