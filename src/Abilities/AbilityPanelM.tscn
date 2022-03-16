@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Assets/DefaultTheme.tres" type="Theme" id=1]
 [ext_resource path="res://src/Abilities/AbilityPanelM.gd" type="Script" id=2]
-[ext_resource path="res://src/Abilities/Ability.gd" type="Script" id=3]
 [ext_resource path="res://src/Abilities/AbilityButtonM.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Assets/Audio/Board/TouchPanel.wav" type="AudioStream" id=5]
 
@@ -30,7 +29,6 @@ __meta__ = {
 [node name="Ability" parent="Buttons" instance=ExtResource( 4 )]
 anchor_right = 0.2
 rect_clip_content = true
-script = ExtResource( 3 )
 
 [node name="Collect" type="Node2D" parent="Buttons/Ability"]
 position = Vector2( 38, 36 )
@@ -39,7 +37,6 @@ position = Vector2( 38, 36 )
 anchor_left = 0.2
 anchor_right = 0.4
 rect_clip_content = true
-script = ExtResource( 3 )
 
 [node name="Collect" type="Node2D" parent="Buttons/Ability2"]
 position = Vector2( 38, 36 )
@@ -48,7 +45,6 @@ position = Vector2( 38, 36 )
 anchor_left = 0.4
 anchor_right = 0.6
 rect_clip_content = true
-script = ExtResource( 3 )
 
 [node name="Collect" type="Node2D" parent="Buttons/Ability3"]
 position = Vector2( 38, 36 )
@@ -57,7 +53,6 @@ position = Vector2( 38, 36 )
 anchor_left = 0.6
 anchor_right = 0.8
 rect_clip_content = true
-script = ExtResource( 3 )
 
 [node name="Collect" type="Node2D" parent="Buttons/Ability4"]
 position = Vector2( 38, 36 )
@@ -65,7 +60,6 @@ position = Vector2( 38, 36 )
 [node name="Ability5" parent="Buttons" instance=ExtResource( 4 )]
 anchor_left = 0.8
 rect_clip_content = true
-script = ExtResource( 3 )
 
 [node name="Collect" type="Node2D" parent="Buttons/Ability5"]
 position = Vector2( 38, 36 )

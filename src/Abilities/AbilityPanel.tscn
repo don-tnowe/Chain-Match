@@ -29,7 +29,6 @@ __meta__ = {
 
 [node name="Fire" parent="Buttons" instance=ExtResource( 3 )]
 anchor_bottom = 0.2
-path_board = NodePath("../../../Board")
 
 [node name="Collect" type="Node2D" parent="Buttons/Fire"]
 position = Vector2( 42, 37 )
@@ -37,7 +36,6 @@ position = Vector2( 42, 37 )
 [node name="Hammer" parent="Buttons" instance=ExtResource( 3 )]
 anchor_top = 0.2
 anchor_bottom = 0.4
-path_board = NodePath("../../../Board")
 
 [node name="Collect" type="Node2D" parent="Buttons/Hammer"]
 position = Vector2( 42, 37 )
@@ -45,7 +43,6 @@ position = Vector2( 42, 37 )
 [node name="Link" parent="Buttons" instance=ExtResource( 3 )]
 anchor_top = 0.4
 anchor_bottom = 0.6
-path_board = NodePath("../../../Board")
 
 [node name="Collect" type="Node2D" parent="Buttons/Link"]
 position = Vector2( 42, 37 )
@@ -53,14 +50,12 @@ position = Vector2( 42, 37 )
 [node name="Lightning" parent="Buttons" instance=ExtResource( 3 )]
 anchor_top = 0.6
 anchor_bottom = 0.8
-path_board = NodePath("../../../Board")
 
 [node name="Collect" type="Node2D" parent="Buttons/Lightning"]
 position = Vector2( 42, 37 )
 
 [node name="Recolor" parent="Buttons" instance=ExtResource( 3 )]
 anchor_top = 0.8
-path_board = NodePath("../../../Board")
 
 [node name="Collect" type="Node2D" parent="Buttons/Recolor"]
 position = Vector2( 42, 37 )
@@ -69,5 +64,3 @@ position = Vector2( 42, 37 )
 stream = ExtResource( 5 )
 
 [node name="Tween" type="Tween" parent="."]
-
-[connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]
