@@ -62,15 +62,10 @@ func load_board(texture:Texture):
 
 
 func mouse_enter_gem(gem:Gem):
-	var last_selected_gem = selected_gem
-	selected_gem = gem
+	selected_gem = inputs.selected_gem
 	highlight_all_gems()
 
 	if chain_tip == null:
-		gem.modulate = highlighted_color
-		if is_instance_valid(last_selected_gem) && last_selected_gem.modulate == highlighted_color:
-			last_selected_gem.modulate = Color.white
-
 		return
 
 	# If it's the chain's last gem, no action.
@@ -224,7 +219,7 @@ func highlight_all_gems():
 
 func get_highlight_color(gem:Gem):
 	if chain_tip == null:
-		return Color.white
+		return Color.white if gem != selected_gem else highlighted_color
 
 	if gem.idx_in_chain != -1:
 		return highlighted_color
