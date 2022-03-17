@@ -180,8 +180,8 @@ func start_chain(gem:Gem):
 	mouse_enter_gem(chain_tip)
 
 
-func stop_chain(interrupt:bool = false):
-	if interrupt && selected_ability != null:
+func stop_chain(interrupt:bool = false, dont_affect_ability:bool = false):
+	if interrupt && selected_ability != null && !dont_affect_ability:
 		selected_ability.release()
 		selected_ability = null
 		highlight_all_gems()

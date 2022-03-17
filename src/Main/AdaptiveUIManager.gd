@@ -25,5 +25,6 @@ func align(platform_idx:int):
 		var x = abis.node_buttons.get_child(i)
 		brd.pip_collectors[i] = x.get_node("Collect")
 		x.node_board = brd
+		x.node_button.connect("mouse_entered", brd, "stop_chain", [true, true])
 
 	
