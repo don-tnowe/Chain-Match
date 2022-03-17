@@ -3,12 +3,14 @@ extends Control
 
 export var scrolls_x := true
 export var scrolls_y := true
+export var threshold := 16.0
 export(Array, NodePath) var scrollable_containers
 
 
 var scrolled_node
 var pressed_node
 var pressed_node_was_disabled := false
+var scrolled_dist := Vector2()
 
 
 func _ready():
@@ -23,9 +25,11 @@ func _input(event):
 			return
 
 		if scrolls_x:
+			scrolled_dist.x += event.relative.x
 			scrolled_node.rect_position.x += event.relative.x
 
 		if scrolls_y:
+			scrolled_dist.y += event.relative.y
 			scrolled_node.rect_position.y += event.relative.y
 
 		scrolled_node.rect_position = Vector2(
@@ -40,10 +44,13 @@ func _input(event):
 				rect_position.y + rect_size.y - scrolled_node.rect_size.y
 				)
 		)
-		pressed_node.disabled = true
+		
+		if scrolled_dist.length_squared() > threshold * threshold: 
+			pressed_node.disabled = true
 
 	elif event is InputEventScreenTouch:
 		if !event.pressed:
+			scrolled_dist = Vector2()
 			if is_instance_valid(pressed_node):
 				pressed_node.disabled = pressed_node_was_disabled
 		
