@@ -51,16 +51,10 @@ func unpreview_score():
 	node_score2.visible = false
 
 	
-func score_chain(chain:Array, score_mult:float = 1, node_tween:Tween = null):
+func score_chain(chain:Array, score_mult:float = 1):
 	unpreview_score()
 	set_score(score + calculate_score(chain, score_mult))
-
-	if is_instance_valid(node_tween):
-		node_tween.interpolate_property(
-			node_score.get_parent(), "scale",
-			Vector2.ONE * 2, Vector2.ONE, 1,
-			Tween.TRANS_ELASTIC, Tween.EASE_OUT
-		)
+	$"../Animation".pulse(node_score.get_parent())
 
 
 func set_score(v:int):

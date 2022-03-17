@@ -102,9 +102,9 @@ func play_collect_vfx(gem:Gem, chain:Array):
 	node_tween.interpolate_callback($"SoundCollect", time1 + time2 + time_wait, "play")
 
 
-func bob_score():
+func pulse(node:Node2D):
 	node_tween.interpolate_property(
-		$"../../Score/ScoreScaler", "scale",
+		node, "scale",
 		Vector2.ONE * 2, Vector2.ONE, 1,
 		Tween.TRANS_ELASTIC, Tween.EASE_OUT
 	)
