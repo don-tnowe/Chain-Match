@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://src/Main/Board.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Audio/Board/ChainEnd2.wav" type="AudioStream" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://src/Main/Failure.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/Abilities/AbilityPanel.tscn" type="PackedScene" id=12]
 [ext_resource path="res://src/Main/BoardAnimation.gd" type="Script" id=13]
+[ext_resource path="res://src/Main/BoardInput.gd" type="Script" id=14]
 [ext_resource path="res://src/Main/AdaptiveUIManager.gd" type="Script" id=15]
 
 [sub_resource type="Gradient" id=3]
@@ -147,6 +148,9 @@ show_behind_parent = true
 z_index = -8
 z_as_relative = false
 default_color = Color( 1, 1, 1, 1 )
+
+[node name="Input" type="Node" parent="Board"]
+script = ExtResource( 14 )
 
 [node name="Objective" type="Node" parent="Board"]
 script = ExtResource( 10 )
@@ -286,7 +290,7 @@ margin_bottom = 44.0
 rect_scale = Vector2( 2, 2 )
 text = "x"
 
-[connection signal="mouse_exited" from="Board/TL" to="Board" method="mouse_leave_board"]
+[connection signal="mouse_exited" from="Board/TL" to="Board/Input" method="mouse_leave_board"]
 [connection signal="failed" from="Board/Objective" to="CanvasLayer/Failure" method="display"]
 [connection signal="timeout" from="Board/Objective/TimerSeconds" to="Board/Objective" method="increment_second"]
 [connection signal="pressed" from="CanvasLayer/Button2" to="CanvasLayer/Failure" method="exit"]
