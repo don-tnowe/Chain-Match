@@ -146,8 +146,4 @@ func can_cast() -> bool:
 
 
 func get_highlight_color(gem:Gem) -> Color:
-	if is_instance_valid(node_board.selected_gem):
-		return actions.get_highlight_color(gem, node_board.selected_gem)
-	
-	else:
-		return node_board.unhighlighted_color
+	return actions.get_highlight_color(gem, node_board.selected_gem)

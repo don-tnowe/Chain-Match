@@ -11,6 +11,9 @@ script/source = "extends AbilityActions
 
 
 func get_highlight_color(gem, selected_gem) -> Color:
+	if selected_gem == null:
+		return Board.unhighlighted_color
+	
 	return Board.unhighlighted_color if gem.position.y != selected_gem.position.y else Color.white
 
 
