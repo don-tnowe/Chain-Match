@@ -6,8 +6,8 @@ export(PackedScene) var scene_gem
 onready var node_board := $"TL/Board"
 onready var node_line := $"TL/Line"
 onready var node_board_tl := $"TL"
-onready var node_tween := $"Tween"
 onready var objective := $"Objective"
+onready var anim := $"Animation"
 
 const tile_idx_by_color := [
 	Color.black
@@ -59,7 +59,6 @@ func load_board(texture:Texture):
 	img.unlock()
 
 	drop_chain(fall_from)
-	node_tween.start()
 
 
 func mouse_enter_gem(gem:Gem):
@@ -142,79 +141,17 @@ func collect_chain(chain:Array, gives_charges:bool = true, score_mult:float = 1)
 		
 		board_contents[gem_pos].emit_particles()
 		if gives_charges:
-			play_collect_vfx(board_contents[gem_pos], chain)
+			anim.play_collect_vfx(board_contents[gem_pos], chain)
+			gem.set_color(get_random_gem_color())
 			
-	objective.score_chain(chain, score_mult, node_tween)
+	objective.score_chain(chain, score_mult)
 	drop_chain(fall_from)
-	node_tween.start()
 
 	# $"SoundChainEnd".pitch_scale = 2 / (chain.size() * 0.1 + 1)
 	$"SoundChainEnd".pitch_scale = 2 / (chain.size() * 0.3)
 	$"SoundChainEnd".volume_db = chain.size() * 0.5 - 9
 	$"SoundChainEnd".play()
 	
-
-func play_collect_vfx(gem:Gem, chain:Array):
-	if gem.color >= 5:
-		return
-
-	if !is_instance_valid(pip_collectors[gem.color]):
-		return
-
-	var collector = pip_collectors[gem.color]
-	var time1 = 0.5
-	var time_wait = randf() * chain.size() * 0.05
-	var time2 = 0.5
-
-	# position
-	var dest1 = gem.global_position + Vector2(randf() - 0.5, randf() - 0.5) * 192
-	var dest2 = collector.global_position
-	node_tween.interpolate_property(
-		gem.node_collected_pip, "global_position",
-		gem.global_position, dest1, time1,
-		Tween.TRANS_QUAD, Tween.EASE_OUT
-	)
-	node_tween.interpolate_property(
-		gem.node_collected_pip, "global_position",
-		dest1, dest2, time2,
-		Tween.TRANS_QUART, Tween.EASE_IN, time1 + time_wait
-	)
-	if collector.get_parent().has_method("charge"):
-		node_tween.interpolate_callback(collector.get_parent(), time1 + time2 + time_wait, "charge")
-	
-	# angle
-	gem.node_collected_pip.rotation = gem.global_position.angle_to_point(dest1)
-	node_tween.interpolate_callback(gem.node_collected_pip, time1, "look_at", dest2)
-	
-	# scale
-	var scale1 = Vector2(0.3, 0.3)
-	var scale2 = Vector2(1, 0.2)
-	node_tween.interpolate_property(
-		gem.node_collected_pip, "scale",
-		Vector2(1.5, 0.33), scale1, time1,
-		Tween.TRANS_QUART, Tween.EASE_OUT
-	)
-	node_tween.interpolate_property(
-		gem.node_collected_pip, "scale",
-		scale1, scale2, time2,
-		Tween.TRANS_QUART, Tween.EASE_IN, time1 + time_wait
-	)
-	node_tween.interpolate_property(
-		gem.node_collected_pip, "scale",
-		scale2, Vector2(0, 2), 0.1,
-		Tween.TRANS_CUBIC, Tween.EASE_OUT, time1 + time2 + time_wait
-	)
-
-	# color
-	node_tween.interpolate_property(
-		gem.node_collected_pip, "modulate",
-		Color.white, gem.self_modulate, time1
-	)
-	gem.set_color(get_random_gem_color())
-
-	# sfx
-	node_tween.interpolate_callback($"SoundCollect", time1 + time2 + time_wait, "play")
-
 
 func drop_chain(fall_from:Dictionary):
 	var new_colors = {}
@@ -231,45 +168,15 @@ func drop_chain(fall_from:Dictionary):
 	for x in falling_positions:
 		if !(x + fall_from[x] in board_contents):
 			new_colors[x] = get_random_gem_color()
-			node_tween.interpolate_property(
-				board_contents[x].node_sprite, "modulate",
-				Color(4, 4, 4, 0), Color.white, 0.5,
-				Tween.TRANS_QUART, Tween.EASE_IN
-			)
+			anim.gem_spawn(board_contents[x])
 
 		else:
 			new_colors[x] = board_contents[x + fall_from[x]].color
 			
-		play_fall_animation(x, fall_from[x], edge)
+		anim.play_fall_animation(x, fall_from[x], edge)
 
 	for x in new_colors:
 		board_contents[x].set_color(new_colors[x])
-
-
-func play_fall_animation(gem_pos:Vector2, fall_from:Vector2, edge:Vector2):
-	var anim_time = 0.5
-	var anim_delay = (
-		abs(gem_pos.y - edge.y)
-		+ abs(gem_pos.x - edge.x)
-	) * 0.001 + 0.05
-	var kickback = Vector2((randf() - 0.5) * 8, -16)
-
-	node_tween.interpolate_property(
-		board_contents[gem_pos].node_sprite, "position",
-		fall_from, fall_from + kickback, anim_delay,
-		Tween.TRANS_CUBIC, Tween.EASE_OUT
-	)
-	node_tween.interpolate_property(
-		board_contents[gem_pos].node_sprite, "position",
-		fall_from + kickback, Vector2(0, -0.5 * kickback.y), anim_time,
-		Tween.TRANS_QUART, Tween.EASE_IN, anim_delay
-	)
-	node_tween.interpolate_property(
-		board_contents[gem_pos].node_sprite, "position",
-		Vector2(0, -0.5 * kickback.y), Vector2(), 0.1,
-		Tween.TRANS_CUBIC, Tween.EASE_OUT, anim_delay + anim_time
-	)
-	node_tween.interpolate_callback($"SoundFall", anim_delay + anim_time, "play")
 
 
 func start_chain(gem:Gem):

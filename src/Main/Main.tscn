@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://src/Main/Board.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Audio/Board/ChainEnd2.wav" type="AudioStream" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://src/Main/ObjectiveManager.gd" type="Script" id=10]
 [ext_resource path="res://src/Main/Failure.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/Abilities/AbilityPanel.tscn" type="PackedScene" id=12]
+[ext_resource path="res://src/Main/BoardAnimation.gd" type="Script" id=13]
 [ext_resource path="res://src/Main/AdaptiveUIManager.gd" type="Script" id=15]
 
 [sub_resource type="Gradient" id=3]
@@ -155,17 +156,21 @@ node_score2 = NodePath("../../Score/Score2")
 
 [node name="TimerSeconds" type="Timer" parent="Board/Objective"]
 
-[node name="Tween" type="Tween" parent="Board"]
+[node name="Animation" type="Node" parent="Board"]
+script = ExtResource( 13 )
 
-[node name="SoundFall" type="AudioStreamPlayer2D" parent="Board"]
+[node name="Tween" type="Tween" parent="Board/Animation"]
+
+[node name="SoundFall" type="AudioStreamPlayer2D" parent="Board/Animation"]
+position = Vector2( 199, 496 )
 stream = ExtResource( 5 )
+
+[node name="SoundCollect" type="AudioStreamPlayer" parent="Board/Animation"]
+stream = SubResource( 1 )
+volume_db = -3.0
 
 [node name="SoundConnect" type="AudioStreamPlayer2D" parent="Board"]
 stream = ExtResource( 3 )
-
-[node name="SoundCollect" type="AudioStreamPlayer" parent="Board"]
-stream = SubResource( 1 )
-volume_db = -3.0
 
 [node name="SoundChainEnd" type="AudioStreamPlayer" parent="Board"]
 stream = ExtResource( 2 )
